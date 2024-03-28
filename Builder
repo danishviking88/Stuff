@@ -1,98 +1,61 @@
-<Window x:Class="IAmTimCorey_WPF_Tutorial.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:IAmTimCorey_WPF_Tutorial"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-    
-        <TextBlock Grid.Column="1" Grid.Row="1" FontSize="20" Text="Hello World"/>
-    
-    </Grid>
-</Window>
+#include "MainFrame.h"
+#include <wx/wx.h>
 
+MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title)
+{
+	wxButton* button = new wxButton(this, wxID_ANY, )
+}
 
+void MainFrame::setupMenuBar()
+{
+	// Creates and prepares the "File" menu bar item
+	wxMenu* fileMenu = new wxMenu();
+	fileMenu->Append(wxID_FILE);
+	fileMenu->Append(wxID_OPEN);
+	fileMenu->AppendSeparator();
+	fileMenu->Append(wxID_SAVE);
+	fileMenu->Append(wxID_SAVEAS);
 
+	// Creates and prepares the "Edit" menu bar item
+	wxMenu* editMenu = new wxMenu();
+	editMenu->Append(wxID_UNDO);
+	editMenu->Append(wxID_REDO);
+	editMenu->AppendSeparator();
+	editMenu->Append(wxID_CUT);
+	editMenu->Append(wxID_PASTE);
 
-
-There are generally two routes one can take as a builder:
-
-	1. TALL, then WIDE
-
-When you do a "tall, then wide" strategy, the idea is your first goal is building a top tier building (usually 10A or 10B) and then build "wide" by building multiple buildings afterwards.
-
-Notes if 10A is in the game:
-
-Getting 10A onto the board quickly requires more precision than 10B, due to it being a level 9 building. Getting to 4 Builders is absolutely critical to get this building out quickly. The fastest way to get 10A out is in the sequence below.
-
-	i. Deliver to Kansas City and gain 4 coins. Use the disc in the second "gain a coin" slot.
-	ii. Double hire two workers.
-	iii. Stop on the build action and place a level one building.
-	iv. Deliver to Kansas City again for 4 coins. If you think this is strategic route you are going, you must prioritize your discs and use the first white disc on the certificates track to unlock the 4th certificate slot.
-	v. Double hire again, using the covered slot 4 Builder bonus to upgrade your building to a level 5 building.
-	vi. Stop on the build action and upgrade the building from level 5 into 10A (at level 9).
-	vii. After you have 10A on board, your priority is to uncover the black disc for the 6 certificate area as soon as possible, ideally with your third loop's delivery. This should be prioritized even above extra movement black discs most of the time.
-
-Notes:
-	· This strategy is insanely coin hungry. For your first few loops, you may need to make extra stops on money making neutral buildings such as the "discard two of the same cows for 4 coins" to make this work.
+	// Create menu bar and adds menu bar items to it
+	wxMenuBar* menuBar = new wxMenuBar();
+	menuBar->Append(fileMenu, "File");
+	menuBar->Append(editMenu, "Edit");
 	
-	· This only plays out perfectly if the hire workers building is BEFORE the build action building. This may take slightly more time and require some changes if this is not the case.
-	
-	· If the build action building is within 3 spaces of the end of the trail, you might be able to start there as the first move of the game and get a level one taxer building out, then build a separate level one building on your first full loop. In this way you can avoid having your taxer be the one getting upgraded and eventually discarded. 
-	
-	· If it's a struggle to get that 4th Builder, you can always build up by 3s by placing a 3 build, then a 6, then finally 10A. This would be a little slower but doable. The jump to 10A could be done by finally getting that 4th worker, or that can be saved and a different level 4 building could be placed. 
-	
-
-Notes if 10B is in the game:
-
-Since 10B is only a level 8 building and not level 9, it is slightly easier to get out. A focused effort is still needed to get this building out, but it does give you a degree of leeway with how you want to open the game. 
-
-	i. If the first or possibly the second station master tile is one you really want, you can take an Engineer and Builder for your first double build and race to beat out other players to get that station master tile.
-	
-		○ The obvious tile would be the one that rewards you 2 points per building. 
-		
-		○ Even if 2 points per building tile is farther back on the track, you might be able to get it later on just with the 4 train movement that comes with 10B. If it's a race to that tile, you can supplement train movement with unlocking both "pay 1 and move your train forward 1" area and utilizing double auxiliary actions, but one must think VERY carefully about whether this is worth the time and monetary effort just to beat out someone else.
-		
-		○ If it's a different tile that you think is worth it, you could then transition into full Engineer after gaining the tile, or drop off the one Engineer you have when you take the station master tile and continue specializing in building, or perhaps doing some sort of Engineer/Builder hybrid. Hybrid strategies can by good, but should only be attempted if you have a specific, sound plan on how you are going to earn your points, and should always be scrutinized before committing to a them.
-		
-	ii. Another option is the take a Cowboy and a Builder as your first double build. Having a second cowboy is often a good opening strategy even if you don't want to go full Cowboy, as it's a good idea for most strategies to get at least a couple new cows in their deck during the game. Players can decide game by game if getting a 3rd or possibly even a 4th Cowboy is a good idea. 
-	
-	iii. You can also just try to stick with specialization and work to get that 4th builder with enough cash to use the special build association with it. If you have the cash for it, you can by loop 2 or 3 build twice within a single loop with this special action plus the regular build action building.
-	
-	
+	// Attaches MenuBar to the Frame
+	SetMenuBar(menuBar);
+}
 
 
 
-	2. WIDE, then TALL
 
-When you do a "wide, then tall" strategy, the idea is that you will place several lower level buildings in key positions, and then build up to the big buildings afterwards. This strategy has several aims:
 
-	i. Place multiple taxers in order to hurt your opponents' economy.
-	
-		○ Place taxers in good locations at junctions where lots of hazards may be to force them to choose between giving you money or taking the long way and paying more.
-		
-		○ Placing taxers before key buildings such as the build action building or hire workers building has the effect of making it more difficult for opponents to have the cash to build at maximum efficiency or perform a double hire.
-		
-	ii. Pay attention to your opponent's ideal loop and place buildings to disrupt that loop.
-	
-		○ Slow down opponents by placing buildings to lengthen their loop, forcing them to take extra turns in order to complete a single loop.
-		
-		○ Place buildings in locations your opponents want to place buildings, ideally in places where they want to place buildings that give them extra movement. You don't want opponents chaining together buildings that let them move quickly across the board.
-		
-	iii. Try to position and chain together buildings that have extra movements on them.
-	
-		○ This will increase your speed through the loop and give you multiple actions per turn.
-		
-	iv. Of the Builder strategies, this one has more flexibility and opportunity to develop into a hybrid, and perhaps SHOULD be played that way. It is hard to win if your only revenue for victory points is buildings, you need to have other ways to supplement the points you need. See the notes section above for building 10B to see hybrid strategies, you can take those tips and lean into them.
+
+
+
+#include "App.h"
+#include "MainFrame.h"
+#include <wx/wx.h>
+
+
+wxIMPLEMENT_APP(App);
+
+bool App::OnInit()
+{
+	MainFrame* mainFrame = new MainFrame("C++ GUI");
+	mainFrame->SetClientSize(800, 600);
+	mainFrame->setupMenuBar();
+	mainFrame->Show();
+	return true;
+}
+
+
+
+
